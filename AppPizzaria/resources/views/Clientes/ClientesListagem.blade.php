@@ -25,7 +25,9 @@
                         </td>
 
                         <td>
-                            {{ $cliente->nome }}
+                            <a href="{{ route('clientes.cadastro', ['id' => $cliente->id]) }}">
+                                {{ $cliente->nome }}
+                            </a>
                         </td>
                         
                         <td>

@@ -17,14 +17,19 @@ class ClientesController extends Controller
         ]);
     }
 
-    public function cadastro()
+    public function cadastro(Request $request)
     {
-        return view('Clientes/ClientesCadastro');
+        $cliente = Clientes::find($request->id);
+
+        return view('Clientes/ClientesCadastro', [
+            'cliente' => $cliente
+        ]);
     }
 
     public function save(Request $request)
     {
         $request = $request->validate([
+            'id'=> '',
             'nome' => 'required|string',
             'cpf' => 'required',
             'email' => 'required',
@@ -32,7 +37,14 @@ class ClientesController extends Controller
             'cep' => 'required'
         ]);
 
-        Clientes::create($request);
+        if ($request['id'] !== null)
+        {
+            Clientes::find($request['id'])->update($request);
+        }
+        else
+        {
+            Clientes::create($request);
+        }
 
         return Redirect::route('clientes.index');
     }
