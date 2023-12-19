@@ -11,6 +11,7 @@
             <th>Id</th>
             <th>Descrição</th>
             <th>Preço</th>
+            <th>Fornecedor</th>
         </thead>
 
         <tbody>
@@ -27,6 +28,10 @@
 
                         <td>
                             R$ {{ number_format($produto->preco, 2, ',', '.') }}
+                        </td>
+
+                        <td>
+                            {{ $produto->fornecedores->nome }}
                         </td>
                     </tr>
                 @endforeach 

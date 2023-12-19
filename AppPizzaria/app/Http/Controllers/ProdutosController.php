@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fornecedores;
 use App\Models\Produtos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -13,20 +14,25 @@ class ProdutosController extends Controller
         $produtos = Produtos::all();
 
         return view('Produtos/ProdutosListagem', [
-            'produtos' => $produtos
+            'produtos' => $produtos,
         ]);
     }
 
     public function cadastro()
-    {
-        return view('Produtos/ProdutosCadastro');
+    {   
+        $fornecedores = Fornecedores::all();
+
+        return view('Produtos/ProdutosCadastro', [
+            'fornecedores' => $fornecedores
+        ]);
     }
 
     public function save(Request $request)
     {
         $request = $request->validate([
             'descricao' => 'required|string',
-            'preco' => 'required'
+            'preco' => 'required',
+            'fornecedores_id' => 'required|numeric|min:1|not_in:0'
         ]);
 
         Produtos::create($request);
