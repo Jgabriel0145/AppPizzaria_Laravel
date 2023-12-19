@@ -12,14 +12,14 @@ class ProdutosController extends Controller
     {
         $produtos = Produtos::all();
 
-        return view('ProdutosListagem', [
+        return view('Produtos/ProdutosListagem', [
             'produtos' => $produtos
         ]);
     }
 
     public function cadastro()
     {
-        return view('ProdutosCadastro');
+        return view('Produtos/ProdutosCadastro');
     }
 
     public function save(Request $request)

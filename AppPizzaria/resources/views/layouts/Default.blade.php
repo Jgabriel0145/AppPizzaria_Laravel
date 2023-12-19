@@ -30,7 +30,7 @@
                         <span class="nav_name">Produtos</span> 
                     </a> 
                     
-                    <a href="#" class="nav_link"> 
+                    <a href="{{ route('clientes.index') }}" class="nav_link"> 
                         <i class='bx bx-user nav_icon'></i> 
                         <span class="nav_name">Clientes</span> 
                     </a> 
@@ -57,7 +57,7 @@
                 </div>
             </div> 
             
-            <a href="/login/logout" class="nav_link">
+            <a href="#" class="nav_link">
                  <i class='bx bx-log-out nav_icon'></i> 
                  <span class="nav_name">Logout</span> 
             </a>
