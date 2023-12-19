@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\ProdutosController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/produtos/cadastro', [ProdutosController::class, 'cadastro'])->name('produtos.cadastro');
 Route::get('/produtos/listagem', [ProdutosController::class, 'index'])->name('produtos.index');
 Route::post('/produtos/cadastro/save', [ProdutosController::class, 'save'])->name('produtos.save');
+
+Route::get('/clientes/cadastro', [ClientesController::class, 'cadastro'])->name('clientes.cadastro');
+Route::get('/clientes/listagem', [ClientesController::class, 'index'])->name('clientes.index');
+Route::post('/clientes/cadastro/save', [ClientesController::class, 'save'])->name('clientes.save');
 
 Route::get('/', function () {
     return view('welcome');

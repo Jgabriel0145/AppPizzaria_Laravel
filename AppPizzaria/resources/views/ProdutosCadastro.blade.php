@@ -2,6 +2,8 @@
 
 @section('titulo', 'Cadastro de Produtos')
 
+@section('titulo_pagina', 'Cadastro de Produtos')
+
 @section('content')
     
     <form action="{{ route('produtos.save') }}" method="post">@csrf

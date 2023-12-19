@@ -2,7 +2,7 @@
 
 @section('titulo', 'Listagem de Produtos')
 
-
+@section('titulo_pagina', 'Listagem de Produtos')
 
 @section('content')
     
@@ -31,5 +31,9 @@
             @endforeach
         </tbody>
     </table>
+
+    <br><br>
+
+    <button onclick="window.location.href = '{{ route('produtos.cadastro') }}'">Cadastrar Novo Produto</button>
 
 @endsection

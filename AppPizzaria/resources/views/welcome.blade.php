@@ -2,10 +2,8 @@
 
 @section('titulo', 'Início')
 
-
+@section('titulo_pagina', 'Início')
 
 @section('content')
-    
-    
 
 @endsection
