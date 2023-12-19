@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\FornecedoresController;
 use App\Http\Controllers\ProdutosController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,10 @@ Route::post('/produtos/cadastro/save', [ProdutosController::class, 'save'])->nam
 Route::get('/clientes/cadastro', [ClientesController::class, 'cadastro'])->name('clientes.cadastro');
 Route::get('/clientes/listagem', [ClientesController::class, 'index'])->name('clientes.index');
 Route::post('/clientes/cadastro/save', [ClientesController::class, 'save'])->name('clientes.save');
+
+Route::get('/fornecedores/cadastro', [FornecedoresController::class, 'cadastro'])->name('fornecedores.cadastro');
+Route::get('/fornecedores/listagem', [FornecedoresController::class, 'index'])->name('fornecedores.index');
+Route::post('/fornecedores/cadastro/save', [FornecedoresController::class, 'save'])->name('fornecedores.save');
 
 Route::get('/', function () {
     return view('welcome');

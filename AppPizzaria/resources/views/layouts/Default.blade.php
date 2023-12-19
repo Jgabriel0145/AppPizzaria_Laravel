@@ -35,12 +35,12 @@
                         <span class="nav_name">Clientes</span> 
                     </a> 
                     
-                    <!--<a href="#" class="nav_link">     
+                    <a href="{{ route('fornecedores.index') }}" class="nav_link">     
                         <i class='bx bx-message-square-detail nav_icon'></i> 
-                        <span class="nav_name">Messages</span> 
+                        <span class="nav_name">Fornecedores</span> 
                     </a> 
                     
-                    <a href="#" class="nav_link"> 
+                    <!--<a href="#" class="nav_link"> 
                         <i class='bx bx-bookmark nav_icon'></i> 
                         <span class="nav_name">Bookmark</span> 
                     </a> 
