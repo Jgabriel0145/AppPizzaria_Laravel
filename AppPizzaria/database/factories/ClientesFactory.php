@@ -16,8 +16,24 @@ class ClientesFactory extends Factory
      */
     public function definition(): array
     {
+        $cpf = '';
+        $cep = '';
+        for ($i = 0; $i < 12; $i++)
+        {
+            $cpf .= strval($this->faker->randomDigit());
+        }
+        
+        for ($i = 0; $i < 9; $i++)
+        {
+            $cep .= strval($this->faker->randomDigit());
+        }
+
         return [
-            //
+            'nome' => $this->faker->name(),
+            'cpf' => $cpf,
+            'email' => $this->faker->email(),
+            'telefone' => $this->faker->phoneNumber(),
+            'cep' => $cep
         ];
     }
 }

@@ -21,6 +21,7 @@ Route::get('/produtos/listagem', [ProdutosController::class, 'index'])->name('pr
 Route::post('/produtos/cadastro/save', [ProdutosController::class, 'save'])->name('produtos.save');
 
 Route::get('/clientes/cadastro/{id?}', [ClientesController::class, 'cadastro'])->name('clientes.cadastro');
+Route::get('/clientes/delete/{id?}', [ClientesController::class, 'delete'])->name('clientes.delete');
 Route::get('/clientes/listagem', [ClientesController::class, 'index'])->name('clientes.index');
 Route::post('/clientes/cadastro/save', [ClientesController::class, 'save'])->name('clientes.save');
 

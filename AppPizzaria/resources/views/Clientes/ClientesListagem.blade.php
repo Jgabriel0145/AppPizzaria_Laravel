@@ -8,6 +8,7 @@
 
     <table>
         <thead>
+            <th>Excluir</th>
             <th>Id</th>
             <th>Nome</th>
             <th>CPF</th>
@@ -20,6 +21,12 @@
             @if (count($clientes) > 0)
                 @foreach ($clientes as $cliente)
                     <tr>
+                        <td>
+                            <a href="{{ route('clientes.delete', ['id' => $cliente->id]) }}">
+                                X
+                            </a>
+                        </td>
+
                         <td>
                             {{ $cliente->id }}
                         </td>

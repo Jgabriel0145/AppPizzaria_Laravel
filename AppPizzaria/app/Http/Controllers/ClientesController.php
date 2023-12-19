@@ -48,4 +48,12 @@ class ClientesController extends Controller
 
         return Redirect::route('clientes.index');
     }
+
+    public function delete(Request $request)
+    {
+        $cliente = Clientes::find($request['id']);
+        $cliente->delete();
+
+        return Redirect::route('clientes.index');
+    }
 }
