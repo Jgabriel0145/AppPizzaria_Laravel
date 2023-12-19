@@ -8,6 +8,7 @@
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js' rel='stylesheet'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js' rel='stylesheet'>
     <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <title>@yield('titulo', 'Início')</title>
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 </head>
@@ -26,7 +27,7 @@
 
                 <div class="nav_list"> 
                     <a href="{{ route('produtos.index') }}" class="nav_link active"> 
-                        <i class='bx bx-grid-alt nav_icon'></i> 
+                        <i class='bx bxs-package nav_icon'></i> 
                         <span class="nav_name">Produtos</span> 
                     </a> 
                     
@@ -36,7 +37,7 @@
                     </a> 
                     
                     <a href="{{ route('fornecedores.index') }}" class="nav_link">     
-                        <i class='bx bx-message-square-detail nav_icon'></i> 
+                        <i class='bi bi-shop-window nav_icon'></i> 
                         <span class="nav_name">Fornecedores</span> 
                     </a> 
                     
