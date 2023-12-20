@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/produtos/cadastro', [ProdutosController::class, 'cadastro'])->name('produtos.cadastro');
+Route::get('/produtos/cadastro/{id?}', [ProdutosController::class, 'cadastro'])->name('produtos.cadastro');
+Route::get('/produtos/delete/{id?}', [ProdutosController::class, 'delete'])->name('produtos.delete');
 Route::get('/produtos/listagem', [ProdutosController::class, 'index'])->name('produtos.index');
 Route::post('/produtos/cadastro/save', [ProdutosController::class, 'save'])->name('produtos.save');
 

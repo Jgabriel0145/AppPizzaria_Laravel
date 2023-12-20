@@ -8,6 +8,7 @@
     
     <table>
         <thead>
+            <th>Excluir</th>
             <th>Id</th>
             <th>Descrição</th>
             <th>Preço</th>
@@ -19,11 +20,19 @@
                 @foreach ($produtos as $produto)
                     <tr>
                         <td>
+                            <a href="{{ route('produtos.delete', ['id' => $produto->id]) }}">
+                                X
+                            </a>
+                        </td>
+
+                        <td>
                             {{ $produto->id }}
                         </td>
 
                         <td>
-                            {{ $produto->descricao }}
+                            <a href="{{ route('produtos.cadastro', ['id' => $produto->id]) }}">
+                                {{ $produto->descricao }}
+                            </a>
                         </td>
 
                         <td>

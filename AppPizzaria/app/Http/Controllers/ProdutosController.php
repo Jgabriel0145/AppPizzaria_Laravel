@@ -18,11 +18,13 @@ class ProdutosController extends Controller
         ]);
     }
 
-    public function cadastro()
+    public function cadastro(Request $request)
     {   
+        $produto = Produtos::find($request->id);
         $fornecedores = Fornecedores::all();
 
         return view('Produtos/ProdutosCadastro', [
+            'produto' => $produto,
             'fornecedores' => $fornecedores
         ]);
     }
@@ -30,18 +32,29 @@ class ProdutosController extends Controller
     public function save(Request $request)
     {
         $request = $request->validate([
+            'id' => '',
             'descricao' => 'required|string',
             'preco' => 'required',
             'fornecedores_id' => 'required|numeric|min:1|not_in:0'
         ]);
 
-        Produtos::create($request);
+        if ($request['id'] !== null)
+        {
+            Produtos::find($request['id'])->update($request);
+        }
+        else 
+        {
+            Produtos::create($request);
+        }
 
         return Redirect::route('produtos.index');
     }
 
-    public function delete()
+    public function delete(Request $request)
     {
+        $produto = Produtos::find($request['id']);
+        $produto->delete();
 
+        return Redirect::route('produtos.index');
     }
 }
