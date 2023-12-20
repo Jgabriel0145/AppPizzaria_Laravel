@@ -7,7 +7,7 @@
 @section('content')
 
     <form action="{{ route('clientes.save') }}" method="post">@csrf
-        <input type="hidden" name="id" value="{{ $cliente ? $cliente->id : null}}">
+        <input type="hidden" name="id" value="{{ $cliente ? $cliente->id : null }}">
 
         <input type="text" name="nome" placeholder="Nome" value="{{ $cliente ? $cliente->nome : '' }}">
         <input type="text" name="cpf" placeholder="CPF" value="{{ $cliente ? $cliente->cpf : '' }}"

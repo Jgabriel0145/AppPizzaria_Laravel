@@ -7,13 +7,14 @@
 @section('content')
 
     <form action="{{ route('fornecedores.save') }}" method="post">@csrf
-        <input type="text" name="nome" placeholder="Nome">
-        <input type="text" name="cnpj" placeholder="CNPJ">
-        <input type="email" name="email" placeholder="Email">
-        <input type="text" name="telefone" placeholder="Telefone">
+        <input type="hidden" name="id" value="{{ $fornecedor ? $fornecedor->id : null }}">
+
+        <input type="text" name="nome" placeholder="Nome" value="{{ $fornecedor ? $fornecedor->nome : null }}">
+        <input type="text" name="cnpj" placeholder="CNPJ" value="{{ $fornecedor ? $fornecedor->cnpj : null }}">
+        <input type="email" name="email" placeholder="Email" value="{{ $fornecedor ? $fornecedor->email : null }}">
+        <input type="text" name="telefone" placeholder="Telefone" value="{{ $fornecedor ? $fornecedor->telefone : null }}">
 
         <button type="submit">Cadastrar</button>
-        
     </form>
 
 @endsection

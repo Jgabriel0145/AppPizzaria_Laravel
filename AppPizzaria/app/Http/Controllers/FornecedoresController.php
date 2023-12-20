@@ -17,21 +17,41 @@ class FornecedoresController extends Controller
         ]);
     }
 
-    public function cadastro()
+    public function cadastro(Request $request)
     {
-        return view('Fornecedores/FornecedoresCadastro');
+        $fornecedor = Fornecedores::find($request->id);
+
+        return view('Fornecedores/FornecedoresCadastro',[
+            'fornecedor' => $fornecedor
+        ]);
     }
 
     public function save(Request $request)
     {
         $request = $request->validate([
+            'id' => '',
             'nome' => 'required|string',
             'cnpj' => 'required',
             'email' => 'required',
             'telefone' => 'required',
         ]);
 
-        Fornecedores::create($request);
+        if ($request['id'] !== null)
+        {
+            Fornecedores::find($request['id'])->update($request);
+        }
+        else 
+        {
+            Fornecedores::create($request);
+        }
+
+        return Redirect::route('fornecedores.index');
+    }
+
+    public function delete(Request $request)
+    {
+        $fornecedor = Fornecedores::find($request['id']);
+        $fornecedor->delete();
 
         return Redirect::route('fornecedores.index');
     }

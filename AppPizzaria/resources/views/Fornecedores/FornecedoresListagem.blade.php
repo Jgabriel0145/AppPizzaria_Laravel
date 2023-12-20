@@ -8,6 +8,7 @@
 
     <table>
         <thead>
+            <th>Excluir</th>
             <th>Id</th>
             <th>Nome</th>
             <th>CNPJ</th>
@@ -20,11 +21,17 @@
                 @foreach ($fornecedores as $fornecedor)
                     <tr>
                         <td>
+                            <a href="{{ route('fornecedores.delete', ['id' => $fornecedor->id]) }}">X</a>
+                        </td>
+
+                        <td>
                             {{ $fornecedor->id }}
                         </td>
 
                         <td>
-                            {{ $fornecedor->nome }}
+                            <a href="{{ route('fornecedores.cadastro', ['id' => $fornecedor->id]) }}">
+                                {{ $fornecedor->nome }}
+                            </a>
                         </td>
                         
                         <td>
