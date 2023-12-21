@@ -19,5 +19,13 @@
 
         <button type="submit">Login</button>
     </form>
+
+    
+    <h5>
+        Para entrar a primeira vez use:<br> 
+        Email -> admin@gmail.com<br>
+        Senha -> admin
+    </h5>
+
 </body>
 </html>

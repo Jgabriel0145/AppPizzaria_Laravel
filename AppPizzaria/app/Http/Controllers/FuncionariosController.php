@@ -87,6 +87,9 @@ class FuncionariosController extends Controller
         {
             $fornecedor = Funcionarios::find($request['id']);
             $fornecedor->delete();
+
+            $user = User::find($request['id']);
+            $user->delete();
     
             return Redirect::route('funcionarios.index');
         }
@@ -98,6 +101,29 @@ class FuncionariosController extends Controller
     //Login
     public function login()
     {
+        $usuarios = User::all();
+        
+        if (count($usuarios) < 1)
+        {
+            $entrar_primeira_vez_user = [
+                'name' => 'admin',
+                'email' => 'admin@gmail.com',
+                'password' => 'admin',
+            ];
+
+            $entrar_primeira_vez_func = [
+                'nome' => 'admin',
+                'cpf' => '00000000000',
+                'email' => 'admin@gmail.com',
+                'telefone' => '00000000000',
+                'senha' => bcrypt('admin'),
+                'administrador' => 1
+            ];
+
+            User::create($entrar_primeira_vez_user);
+            Funcionarios::create($entrar_primeira_vez_func);
+        }
+
         return view('Login/Login');
     }
 

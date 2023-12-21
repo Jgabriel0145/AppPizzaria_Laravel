@@ -32,7 +32,7 @@ Route::get('/login', [FuncionariosController::class, 'login'])->name('login.logi
 Route::get('/login/logout', [FuncionariosController::class, 'logout'])->name('login.logout');
 Route::post('/login/autenticar', [FuncionariosController::class, 'autenticar'])->name('login.autenticar');
 
-Route::get('/', function () { 
+Route::get('/', function () {
     if (Auth::check()) return view('welcome', ['usuario' => Auth::user()]);
     return Redirect::route('login.login');
 })->name('inicio');
