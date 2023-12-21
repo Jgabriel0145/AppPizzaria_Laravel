@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\FornecedoresController;
+use App\Http\Controllers\FuncionariosController;
 use App\Http\Controllers\ProdutosController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,11 @@ Route::get('/fornecedores/cadastro/{id?}', [FornecedoresController::class, 'cada
 Route::get('/fornecedores/delete/{id?}', [FornecedoresController::class, 'delete'])->name('fornecedores.delete');
 Route::get('/fornecedores/listagem', [FornecedoresController::class, 'index'])->name('fornecedores.index');
 Route::post('/fornecedores/cadastro/save', [FornecedoresController::class, 'save'])->name('fornecedores.save');
+
+Route::get('/funcionarios/cadastro/{id?}', [FuncionariosController::class, 'cadastro'])->name('funcionarios.cadastro');
+Route::get('/funcionarios/delete/{id?}', [FuncionariosController::class, 'delete'])->name('funcionarios.delete');
+Route::get('/funcionarios/listagem', [FuncionariosController::class, 'index'])->name('funcionarios.index');
+Route::post('/funcionarios/cadastro/save', [FuncionariosController::class, 'save'])->name('funcionarios.save');
 
 Route::get('/', function () {
     return view('welcome');

@@ -22,7 +22,7 @@
             @endif
         </select>
 
-        <button type="submit">Cadastrar</button>
+        <button type="submit">Salvar</button>
     </form>    
 
 @endsection

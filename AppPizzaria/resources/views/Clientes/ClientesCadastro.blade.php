@@ -18,7 +18,7 @@
         <input type="text" name="cep" placeholder="CEP" value="{{ $cliente ? $cliente->cep : '' }}"
             maxlength="8" minlength="8">
 
-        <button type="submit">Cadastrar</button>
+        <button type="submit">Salvar</button>
     </form>
 
 @endsection

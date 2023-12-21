@@ -14,7 +14,7 @@
         <input type="email" name="email" placeholder="Email" value="{{ $fornecedor ? $fornecedor->email : null }}">
         <input type="text" name="telefone" placeholder="Telefone" value="{{ $fornecedor ? $fornecedor->telefone : null }}">
 
-        <button type="submit">Cadastrar</button>
+        <button type="submit">Salvar</button>
     </form>
 
 @endsection
