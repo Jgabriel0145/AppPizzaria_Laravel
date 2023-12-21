@@ -41,12 +41,12 @@
                         <span class="nav_name">Fornecedores</span> 
                     </a> 
                     
-                    <!--<a href="#" class="nav_link"> 
+                    <a href="{{ route('funcionarios.index') }}" class="nav_link"> 
                         <i class='bx bx-bookmark nav_icon'></i> 
-                        <span class="nav_name">Bookmark</span> 
+                        <span class="nav_name">Funcionários</span> 
                     </a> 
                     
-                    <a href="#" class="nav_link">
+                    <!--<a href="#" class="nav_link">
                          <i class='bx bx-folder nav_icon'></i> 
                          <span class="nav_name">Files</span> 
                     </a> 
@@ -58,7 +58,7 @@
                 </div>
             </div> 
             
-            <a href="#" class="nav_link">
+            <a href="{{ route('login.logout') }}" class="nav_link">
                  <i class='bx bx-log-out nav_icon'></i> 
                  <span class="nav_name">Logout</span> 
             </a>

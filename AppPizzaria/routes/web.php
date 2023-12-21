@@ -4,6 +4,8 @@ use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\FornecedoresController;
 use App\Http\Controllers\FuncionariosController;
 use App\Http\Controllers\ProdutosController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/produtos/cadastro/{id?}', [ProdutosController::class, 'cadastro'])->name('produtos.cadastro');
@@ -26,6 +28,11 @@ Route::get('/funcionarios/delete/{id?}', [FuncionariosController::class, 'delete
 Route::get('/funcionarios/listagem', [FuncionariosController::class, 'index'])->name('funcionarios.index');
 Route::post('/funcionarios/cadastro/save', [FuncionariosController::class, 'save'])->name('funcionarios.save');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/login', [FuncionariosController::class, 'login'])->name('login.login');
+Route::get('/login/logout', [FuncionariosController::class, 'logout'])->name('login.logout');
+Route::post('/login/autenticar', [FuncionariosController::class, 'autenticar'])->name('login.autenticar');
+
+Route::get('/', function () { 
+    if (Auth::check()) return view('welcome', ['usuario' => Auth::user()]);
+    return Redirect::route('login.login');
+})->name('inicio');

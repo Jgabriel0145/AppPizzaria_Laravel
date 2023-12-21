@@ -70,7 +70,7 @@
 
     <br><br>
 
-    <button onclick="window.location.href = '{{ route('funcionarios.cadastro') }}'">Cadastrar Novo Funcionario</button>
+    <button onclick="window.location.href = '{{ route('funcionarios.cadastro') }}'">Cadastrar Novo Funcionário</button>
 
 
 @endsection
