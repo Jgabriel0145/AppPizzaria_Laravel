@@ -26,7 +26,12 @@
                 </a>
 
                 <div class="nav_list"> 
-                    <a href="{{ route('produtos.index') }}" class="nav_link active"> 
+                    <a href="{{ route('inicio') }}" class="nav_link">
+                        <i class="bi bi-house-door-fill nav_icon"></i>
+                        <span class="nav_name">Início</span>
+                    </a>
+
+                    <a href="{{ route('produtos.index') }}" class="nav_link"> 
                         <i class='bx bxs-package nav_icon'></i> 
                         <span class="nav_name">Produtos</span> 
                     </a> 
