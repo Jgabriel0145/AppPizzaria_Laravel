@@ -47,19 +47,14 @@
                     </a> 
                     
                     <a href="{{ route('funcionarios.index') }}" class="nav_link"> 
-                        <i class='bi bi-briefcase-fill nav_icon'></i> 
+                        <i class='bi bi-briefcase nav_icon'></i> 
                         <span class="nav_name">Funcionários</span> 
                     </a> 
                     
-                    <!--<a href="#" class="nav_link">
-                         <i class='bx bx-folder nav_icon'></i> 
-                         <span class="nav_name">Files</span> 
+                    <a href="{{ route('vendas.carrinho') }}" class="nav_link">
+                         <i class='bi bi-cart nav_icon'></i> 
+                         <span class="nav_name">Vendas</span> 
                     </a> 
-                    
-                    <a href="#" class="nav_link">
-                         <i class='bx bx-bar-chart-alt-2 nav_icon'></i> 
-                         <span class="nav_name">Stats</span> 
-                    </a>--> 
                 </div>
             </div> 
             

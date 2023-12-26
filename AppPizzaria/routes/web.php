@@ -4,6 +4,7 @@ use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\FornecedoresController;
 use App\Http\Controllers\FuncionariosController;
 use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\VendasController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,11 @@ Route::get('/funcionarios/cadastro/{id?}', [FuncionariosController::class, 'cada
 Route::get('/funcionarios/delete/{id?}', [FuncionariosController::class, 'delete'])->name('funcionarios.delete');
 Route::get('/funcionarios/listagem', [FuncionariosController::class, 'index'])->name('funcionarios.index');
 Route::post('/funcionarios/cadastro/save', [FuncionariosController::class, 'save'])->name('funcionarios.save');
+
+Route::get('/vendas/carrinho', [VendasController::class, 'carrinhoForm'])->name('vendas.carrinho');
+Route::get('/vendas/carrinho/listagem', [VendasController::class, 'carrinhoList'])->name('vendas.carrinho.list');
+Route::get('/vendas/carrinho/delete/{id?}', [VendasController::class, 'carrinhoDelete'])->name('vendas.carrinho.delete');
+Route::post('/vendas/carrinho/save', [VendasController::class, 'carrinhoSave'])->name('vendas.carrinho.save');
 
 Route::get('/login', [FuncionariosController::class, 'login'])->name('login.login');
 Route::get('/login/logout', [FuncionariosController::class, 'logout'])->name('login.logout');
