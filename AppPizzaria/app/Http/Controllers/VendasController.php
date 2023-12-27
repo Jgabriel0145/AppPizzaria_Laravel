@@ -80,6 +80,29 @@ class VendasController extends Controller
         return Redirect::route('login.login');
     }
 
+    public function delete(Request $request)
+    {
+        if (Auth::check())
+        {
+            $request = $request->validate([
+                'id' => ''
+            ]);
+
+            $itens = VendaProdutos::where('vendas_id', $request['id'])->get();
+            foreach ($itens as $item)
+            {
+                $item->delete();
+            }
+
+            $venda = Vendas::find($request['id']);
+            $venda->delete();
+    
+            return Redirect::route('vendas.index');
+        }
+
+        return Redirect::route('login.login');
+    }
+
 
 
     //Carrinho

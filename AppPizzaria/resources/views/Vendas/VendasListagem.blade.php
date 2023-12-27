@@ -22,7 +22,7 @@
                 @foreach ($vendas as $venda)
                     <tr>
                         <td>
-                            <a href="">
+                            <a href="{{ route('vendas.delete', ['id' => $venda->id ]) }}">
                                 X
                             </a>
                         </td>
