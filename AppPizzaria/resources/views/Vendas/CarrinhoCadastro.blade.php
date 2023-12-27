@@ -27,4 +27,8 @@
 
     <button onclick="window.location.href = '{{ route('vendas.carrinho.list') }}'">Ver Carrinho</button>
 
+    <br><br>
+
+    <button onclick="window.location.href = '{{ route('vendas.index') }}'">Listagem de Vendas</button>
+
 @endsection

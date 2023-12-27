@@ -42,7 +42,7 @@
                     </a> 
                     
                     <a href="{{ route('fornecedores.index') }}" class="nav_link">     
-                        <i class='bi bi-shop-window nav_icon'></i> 
+                        <i class='bi bi-truck nav_icon'></i> 
                         <span class="nav_name">Fornecedores</span> 
                     </a> 
                     

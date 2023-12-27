@@ -34,6 +34,10 @@ Route::get('/vendas/carrinho/listagem', [VendasController::class, 'carrinhoList'
 Route::get('/vendas/carrinho/delete/{id?}', [VendasController::class, 'carrinhoDelete'])->name('vendas.carrinho.delete');
 Route::post('/vendas/carrinho/save', [VendasController::class, 'carrinhoSave'])->name('vendas.carrinho.save');
 
+Route::get('/vendas/listagem', [VendasController::class, 'index'])->name('vendas.index');
+Route::get('/vendas/veritens/{vendas_id?}', [VendasController::class, 'verItens'])->name('vendas.veritens');
+Route::post('/vendas/save', [VendasController::class, 'save'])->name('vendas.save');
+
 Route::get('/login', [FuncionariosController::class, 'login'])->name('login.login');
 Route::get('/login/logout', [FuncionariosController::class, 'logout'])->name('login.logout');
 Route::post('/login/autenticar', [FuncionariosController::class, 'autenticar'])->name('login.autenticar');
