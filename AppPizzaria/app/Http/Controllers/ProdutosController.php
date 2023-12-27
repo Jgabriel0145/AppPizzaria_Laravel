@@ -14,11 +14,16 @@ class ProdutosController extends Controller
     {
         if (Auth::check())
         {
-            $produtos = Produtos::all();
+            if (Auth::user()->administrador == 1)
+            {
+                $produtos = Produtos::all();
 
-            return view('Produtos/ProdutosListagem', [
-                'produtos' => $produtos,
-            ]);
+                return view('Produtos/ProdutosListagem', [
+                    'produtos' => $produtos,
+                ]);                
+            }
+
+            return Redirect::route('inicio');
         }
 
         return Redirect::route('login.login');
@@ -28,13 +33,18 @@ class ProdutosController extends Controller
     {   
         if (Auth::check())
         {
-            $produto = Produtos::find($request->id);
-            $fornecedores = Fornecedores::all();
-    
-            return view('Produtos/ProdutosCadastro', [
-                'produto' => $produto,
-                'fornecedores' => $fornecedores
-            ]);
+            if (Auth::user()->administrador)
+            {
+                $produto = Produtos::find($request->id);
+                $fornecedores = Fornecedores::all();
+        
+                return view('Produtos/ProdutosCadastro', [
+                    'produto' => $produto,
+                    'fornecedores' => $fornecedores
+                ]);                
+            }
+
+            return Redirect::route('inicio');
         }
 
         return Redirect::route('login.login');
@@ -44,23 +54,28 @@ class ProdutosController extends Controller
     {
         if (Auth::check())
         {
-            $request = $request->validate([
-                'id' => '',
-                'descricao' => 'required|string',
-                'preco' => 'required',
-                'fornecedores_id' => 'required|numeric|min:1|not_in:0'
-            ]);
-    
-            if ($request['id'] !== null)
+            if (Auth::user()->administrador)
             {
-                Produtos::find($request['id'])->update($request);
+                $request = $request->validate([
+                    'id' => '',
+                    'descricao' => 'required|string',
+                    'preco' => 'required',
+                    'fornecedores_id' => 'required|numeric|min:1|not_in:0'
+                ]);
+        
+                if ($request['id'] !== null)
+                {
+                    Produtos::find($request['id'])->update($request);
+                }
+                else 
+                {
+                    Produtos::create($request);
+                }
+        
+                return Redirect::route('produtos.index');                
             }
-            else 
-            {
-                Produtos::create($request);
-            }
-    
-            return Redirect::route('produtos.index');
+            
+            return Redirect::route('inicio');
         }
 
         return Redirect::route('login.login');
@@ -70,10 +85,15 @@ class ProdutosController extends Controller
     {
         if (Auth::check())
         {
-            $produto = Produtos::find($request['id']);
-            $produto->delete();
-    
-            return Redirect::route('produtos.index');
+            if (Auth::user()->administrador == 1)
+            {
+                $produto = Produtos::find($request['id']);
+                $produto->delete();
+        
+                return Redirect::route('produtos.index');                
+            }
+
+            return Redirect::route('inicio');
         }
 
         return Redirect::route('login.login');

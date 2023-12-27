@@ -14,11 +14,16 @@ class FuncionariosController extends Controller
     {
         if (Auth::check())
         {
-            $funcionarios = Funcionarios::all();
+            if (Auth::user()->administrador == 1)
+            {
+                $funcionarios = Funcionarios::all();
 
-            return view('Funcionarios/FuncionariosListagem', [
-                'funcionarios' => $funcionarios
-            ]);
+                return view('Funcionarios/FuncionariosListagem', [
+                    'funcionarios' => $funcionarios
+                ]);
+            }
+
+            return Redirect::route('inicio');
         }
         
         return Redirect::route('login.login');
@@ -28,11 +33,16 @@ class FuncionariosController extends Controller
     {
         if (Auth::check())
         {
-            $funcionario = Funcionarios::find($request->id);
+            if (Auth::user()->administrador == 1)
+            {
+                $funcionario = Funcionarios::find($request->id);
 
-            return view('Funcionarios/FuncionariosCadastro',[
-                'funcionario' => $funcionario
-            ]);
+                return view('Funcionarios/FuncionariosCadastro',[
+                    'funcionario' => $funcionario
+                ]);                
+            }
+
+            return Redirect::route('inicio');
         }
         
         return Redirect::route('login.login');
@@ -42,40 +52,54 @@ class FuncionariosController extends Controller
     {
         if (Auth::check())
         {
-            if ($request['administrador'] == null) $request['administrador'] = 0;
-            else $request['administrador'] = 1;
-
-            $request = $request->validate([
-                'id' => '',
-                'nome' => 'required|string',
-                'cpf' => 'required',
-                'email' => 'required',
-                'telefone' => 'required',
-                'senha' => 'required',
-                'administrador' => ''
-            ]);
-
-            $dados_usuario = [
-                'id' => $request['id'], 
-                'name' => $request['nome'], 
-                'email' => $request['email'], 
-                'password' => $request['senha']
-            ];
-
-            $request['senha'] = bcrypt($request['senha']);
-
-            if ($request['id'] !== null)
+            if (Auth::user()->administrador == 1)
             {
-                Funcionarios::find($request['id'])->update($request);
-                User::find($request['id'])->update($dados_usuario);
-            }
-            else 
-            {
-                Funcionarios::create($request);
-                User::create($dados_usuario);
+                if ($request['administrador'] == null) $request['administrador'] = 0;
+                else $request['administrador'] = 1;
+
+                $request = $request->validate([
+                    'id' => '',
+                    'nome' => 'required|string',
+                    'cpf' => 'required',
+                    'email' => 'required',
+                    'telefone' => 'required',
+                    'senha' => 'required',
+                    'administrador' => ''
+                ]);
+
+                $dados_usuario = [
+                    'id' => $request['id'], 
+                    'name' => $request['nome'], 
+                    'email' => $request['email'], 
+                    'password' => $request['senha'],
+                    'administrador' => $request['administrador']
+                ];
+
+                $request['senha'] = bcrypt($request['senha']);
+
+                if ($request['id'] !== null)
+                {
+                    $funcionario = Funcionarios::find($request['id']);
+                    if ($funcionario->administrador == 1)
+                    {
+                        $administradores = Funcionarios::where('administrador', 1)->get();
+                        if (count($administradores) == 1)
+                            return Redirect::route('funcionarios.cadastro', ['id' => $request['id']]);
+                    }
+
+                    $funcionario->update($request);
+                    User::find($request['id'])->update($dados_usuario);
+                }
+                else 
+                {
+                    Funcionarios::create($request);
+                    User::create($dados_usuario);
+                }
+
+                return Redirect::route('funcionarios.index');                
             }
 
-            return Redirect::route('funcionarios.index');
+            return Redirect::route('inicio');
         }        
 
         return Redirect::route('login.login');
@@ -85,13 +109,26 @@ class FuncionariosController extends Controller
     {
         if (Auth::check())
         {
-            $fornecedor = Funcionarios::find($request['id']);
-            $fornecedor->delete();
+            if (Auth::user()->administrador == 1)
+            {
+                $administradores = User::where('administrador', 1)->get();
 
-            $user = User::find($request['id']);
-            $user->delete();
-    
-            return Redirect::route('funcionarios.index');
+                $funcionario = Funcionarios::find($request['id']);
+                if ($funcionario->administrador == 1)
+                {
+                    if (count($administradores) == 1)
+                        return Redirect::route('funcionarios.index');
+                }
+                
+                $funcionario->delete();
+
+                $user = User::find($request['id']);
+                $user->delete();
+        
+                return Redirect::route('funcionarios.index');                
+            }
+
+            return Redirect::route('inicio');
         }
 
         return Redirect::route('login.login');
@@ -109,6 +146,7 @@ class FuncionariosController extends Controller
                 'name' => 'admin',
                 'email' => 'admin@gmail.com',
                 'password' => 'admin',
+                'administrador' => '1'
             ];
 
             $entrar_primeira_vez_func = [

@@ -10,6 +10,11 @@
     Id: {{ $usuario->id }}<br>
     Nome: {{ $usuario->name }}<br>
     Email: {{ $usuario->email }}<br>
+    Admin: @if ($usuario->administrador == 1)
+                Sim
+            @else
+                Não
+            @endif
     
 
 @endsection

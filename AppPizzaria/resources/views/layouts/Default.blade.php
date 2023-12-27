@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <title>@yield('titulo', 'Início')</title>
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+
+    <?php 
+        ;
+
+        $usuario
+    ?>
 </head>
 <body id="body-pd">
     <header class="header" id="header">
@@ -30,30 +36,32 @@
                         <i class="bi bi-house-door-fill nav_icon"></i>
                         <span class="nav_name">Início</span>
                     </a>
-
-                    <a href="{{ route('produtos.index') }}" class="nav_link"> 
-                        <i class='bx bxs-package nav_icon'></i> 
-                        <span class="nav_name">Produtos</span> 
-                    </a> 
                     
                     <a href="{{ route('clientes.index') }}" class="nav_link"> 
                         <i class='bx bx-user nav_icon'></i> 
                         <span class="nav_name">Clientes</span> 
                     </a> 
                     
-                    <a href="{{ route('fornecedores.index') }}" class="nav_link">     
-                        <i class='bi bi-truck nav_icon'></i> 
-                        <span class="nav_name">Fornecedores</span> 
-                    </a> 
-                    
-                    <a href="{{ route('funcionarios.index') }}" class="nav_link"> 
-                        <i class='bi bi-briefcase nav_icon'></i> 
-                        <span class="nav_name">Funcionários</span> 
-                    </a> 
+                    @if (\Illuminate\Support\Facades\Auth::user()->administrador == 1)
+                        <a href="{{ route('produtos.index') }}" class="nav_link"> 
+                            <i class='bx bxs-package nav_icon'></i> 
+                            <span class="nav_name">Produtos</span> 
+                        </a> 
+
+                        <a href="{{ route('fornecedores.index') }}" class="nav_link">     
+                            <i class='bi bi-truck nav_icon'></i> 
+                            <span class="nav_name">Fornecedores</span> 
+                        </a> 
+                        
+                        <a href="{{ route('funcionarios.index') }}" class="nav_link"> 
+                            <i class='bi bi-briefcase nav_icon'></i> 
+                            <span class="nav_name">Funcionários</span> 
+                        </a> 
+                    @endif
                     
                     <a href="{{ route('vendas.carrinho') }}" class="nav_link">
-                         <i class='bi bi-cart nav_icon'></i> 
-                         <span class="nav_name">Vendas</span> 
+                        <i class='bi bi-cart nav_icon'></i> 
+                        <span class="nav_name">Vendas</span> 
                     </a> 
                 </div>
             </div> 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('quantidade');
             $table->double('total_venda');
             $table->foreignId('vendas_id')->constrained()->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->foreignId('produtos_id')->constrained()->onDelete('NO ACTION')->onUpdate('NO ACTION');
+            $table->foreignId('produtos_id')->constrained()->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->timestamps();
         });
     }

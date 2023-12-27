@@ -13,11 +13,16 @@ class FornecedoresController extends Controller
     {
         if (Auth::check())
         {
-            $fornecedores = Fornecedores::all();
+            if (Auth::user()->administrador == 1)
+            {
+                $fornecedores = Fornecedores::all();
 
-            return view('Fornecedores/FornecedoresListagem', [
-                'fornecedores' => $fornecedores
-            ]);
+                return view('Fornecedores/FornecedoresListagem', [
+                    'fornecedores' => $fornecedores
+                ]);
+            }
+            
+            return Redirect::route('inicio');
         }
 
         return Redirect::route('login.login');
@@ -27,11 +32,16 @@ class FornecedoresController extends Controller
     {
         if (Auth::check())
         {
-            $fornecedor = Fornecedores::find($request->id);
+            if (Auth::user()->administrador == 1)
+            {
+                $fornecedor = Fornecedores::find($request->id);
 
-            return view('Fornecedores/FornecedoresCadastro',[
-                'fornecedor' => $fornecedor
-            ]);
+                return view('Fornecedores/FornecedoresCadastro',[
+                    'fornecedor' => $fornecedor
+                ]);
+            }
+
+            return Redirect::route('inicio');
         }
 
         return Redirect::route('login.login');
@@ -41,24 +51,29 @@ class FornecedoresController extends Controller
     {
         if (Auth::check())
         {
-            $request = $request->validate([
-                'id' => '',
-                'nome' => 'required|string',
-                'cnpj' => 'required',
-                'email' => 'required',
-                'telefone' => 'required',
-            ]);
-    
-            if ($request['id'] !== null)
+            if (Auth::user()->administrador == 1)
             {
-                Fornecedores::find($request['id'])->update($request);
+                $request = $request->validate([
+                    'id' => '',
+                    'nome' => 'required|string',
+                    'cnpj' => 'required',
+                    'email' => 'required',
+                    'telefone' => 'required',
+                ]);
+        
+                if ($request['id'] !== null)
+                {
+                    Fornecedores::find($request['id'])->update($request);
+                }
+                else 
+                {
+                    Fornecedores::create($request);
+                }
+        
+                return Redirect::route('fornecedores.index');                
             }
-            else 
-            {
-                Fornecedores::create($request);
-            }
-    
-            return Redirect::route('fornecedores.index');
+
+            return Redirect::to('inicio');
         }
 
         return Redirect::route('login.login');
@@ -68,10 +83,15 @@ class FornecedoresController extends Controller
     {
         if (Auth::check())
         {
-            $fornecedor = Fornecedores::find($request['id']);
-            $fornecedor->delete();
-    
-            return Redirect::route('fornecedores.index');
+            if (Auth::user()->administrador == 1)
+            {
+                $fornecedor = Fornecedores::find($request['id']);
+                $fornecedor->delete();
+        
+                return Redirect::route('fornecedores.index');
+            }
+
+            return Redirect::to('inicio');
         }
 
         return Redirect::route('login.login');

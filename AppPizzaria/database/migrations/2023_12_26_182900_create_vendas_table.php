@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
             $table->double('valor_total_venda');
-            $table->foreignId('clientes_id')->constrained()->onDelete('NO ACTION')->onUpdate('NO ACTION');
-            $table->foreignId('funcionarios_id')->constrained()->onDelete('NO ACTION')->onUpdate('NO ACTION');
+            $table->foreignId('clientes_id')->constrained()->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreignId('funcionarios_id')->constrained()->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->timestamps();
         });
 
